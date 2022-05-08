@@ -70,10 +70,12 @@ class FollowSerializer(serializers.ModelSerializer):
         user = self.context["request"].user
         follow_obj = data["following"]
         if user == follow_obj:
-            raise serializers.ValidationError("Подписываться на себя нельзя!")
+            raise serializers.ValidationError(
+                "Невозможно подписаться на самого себя"
+            )
         if Follow.objects.filter(
             user=User.objects.get(username=user),
             following=User.objects.get(username=follow_obj),
         ).exists():
-            raise serializers.ValidationError("Вы уже подписались")
+            raise serializers.ValidationError("Вы уже подписаны")
         return data

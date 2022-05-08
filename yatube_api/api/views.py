@@ -33,7 +33,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         post = get_object_or_404(Post, pk=self.kwargs.get("post_id"))
-        return post.comments.all()  # type: ignore
+        return post.comments.all()  
 
     def perform_create(self, serializer):
         post = get_object_or_404(Post, pk=self.kwargs.get("post_id"))
