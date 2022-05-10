@@ -75,4 +75,3 @@ class FollowSerializer(serializers.ModelSerializer):
                 "Невозможно подписаться на самого себя"
             )
         return data
-        
